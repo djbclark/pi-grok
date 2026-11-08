@@ -11,10 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: 19e7b91b77b3e560bb6b0fbf7cf6bbef2e24d479
+          ref: 02fbb8cea5aa29f69e3efd3a232aff923e49afe0
       - name: Confirm exact source and runner
         run: |
-          test "$(git rev-parse HEAD)" = "19e7b91b77b3e560bb6b0fbf7cf6bbef2e24d479"
+          test "$(git rev-parse HEAD)" = "02fbb8cea5aa29f69e3efd3a232aff923e49afe0"
           node --version
           npm --version
       - name: Install declared development dependencies
