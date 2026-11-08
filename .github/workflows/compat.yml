@@ -1,0 +1,25 @@
+name: Pi compatibility validation
+on:
+  push:
+    branches: [ci/pi15-validation]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: 19e7b91b77b3e560bb6b0fbf7cf6bbef2e24d479
+      - name: Confirm exact source and runner
+        run: |
+          test "$(git rev-parse HEAD)" = "19e7b91b77b3e560bb6b0fbf7cf6bbef2e24d479"
+          node --version
+          npm --version
+      - name: Install declared development dependencies
+        run: npm ci --ignore-scripts
+      - name: Run repository tests
+        run: npm test
+      - name: Check TypeScript
+        run: npm run typecheck
